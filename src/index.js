@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Routes, Route} from 'react-router';
+import LoginPage from './public/login/login.page';
+import ProductsPage from './admin/products/products.page';
+import CategoriesPage from './admin/categories/categories.page';
+import MainLayout from './admin/main-layout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/admin' element={<MainLayout />}>
+          <Route path='products' element={<ProductsPage />} />
+          <Route path='categories' element={<CategoriesPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
